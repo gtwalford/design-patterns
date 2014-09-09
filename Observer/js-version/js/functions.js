@@ -4,21 +4,24 @@
 
 /* trigger when page is ready */
 $(document).ready(function (){
-
-  var observers;
+  var observerSpace = $('#observer-space');
+  var observers = [];
   var subject = new Subject();
 
-  //$('body').on('click', subject.addObserver('observer'+observers.length) );
+  //$('#observer-space').click( subject.registerObserver('observer'+observers.length) );
+  observerSpace.on('click', function(e){
+    new Observer('observer'+observers.length, subject, e.pageX, e.pageY);
+  });
 
   function Subject(){
-    var size = $('#controls--slider-size').val();
-    var red = $('#controls--slider-red').val();
-    var green = $('#controls--slider-green').val();
-    var blue = $('#controls--slider-blue').val();
+    this.size = $('#controls--slider-size').val();
+    this.red = $('#controls--slider-red').val();
+    this.green = $('#controls--slider-green').val();
+    this.blue = $('#controls--slider-blue').val();
 
-    console.log( size, red, green, blue );
-    this.registerObserver = function (name){
-
+    this.registerObserver = function (observer){
+      console.log("register " + observer);
+      observers.push(observer);
     }
 
     this.detachObserver = function (name){
@@ -30,12 +33,25 @@ $(document).ready(function (){
     }
   }
 
-  function observer(){
+  function Observer(name, subject, x, y){
+    this.size = subject.size;
+    this.red = subject.red;
+    this.green = subject.green;
+    this.blue = subject.blue;
+
+
+    observerSpace.append('<div id="'+name+'" class="observer" style="top:'+y+'px; left:'+x+'px; width:'+subject.size+'px; height:'+subject.size+'px;"></div>');
+
+    subject.registerObserver(name);
+
 
     this.update = function(){
 
+      console.log('update');
+
     }
   }
+
 });
 
 })(window.jQuery);
