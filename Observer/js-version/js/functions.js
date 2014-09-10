@@ -14,9 +14,13 @@ $(document).ready(function (){
   });
 
   $observerSpace.on('click', function(e){
-    if( e.target.tagName == 'circle' ){
-      e.target.remove();
-      subject.detachObserver( e.target.attributes.data.value );
+    var el = e.target;
+
+    if( el.tagName == 'circle' ){
+      $(el).fadeOut(500, function(){
+        this.remove();
+      });
+      subject.detachObserver( el.attributes.data.value );
     }
     else {
       new Observer('observer'+observers.length, e.pageX, e.pageY);
