@@ -17,9 +17,9 @@ $(document).ready(function (){
     var el = e.target;
 
     if( el.tagName == 'circle' ){
-      $(el).fadeOut(500, function(){
-        this.remove();
-      });
+      //$(el).fadeOut(500, function(){
+        //this.remove();
+      //});
       subject.detachObserver( el.attributes.data.value );
     }
     else {
