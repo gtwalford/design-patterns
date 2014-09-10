@@ -22,15 +22,14 @@
 
 	<body>
 
-    <ul class="subject-controls">
-      <li><label>Size: </label><input id="controls--slider-size" type="range" min="0" max="50" step="1" value="10" /><span>0</span></li>
+    <ul id="controls" class="subject-controls">
+      <li><label>Size: </label><input id="controls--slider-size" type="range" min="0" max="100" step="1" value="10" /><span>0</span></li>
       <li><label>Red: </label><input id="controls--slider-red" type="range" min="0" max="255" step="1" value="50"/><span>0</span></li>
       <li><label>Green: </label><input id="controls--slider-green" type="range" min="0" max="255" step="1" value="100"/><span>0</span></li>
       <li><label>Blue: </label><input id="controls--slider-blue" type="range" min="0" max="255" step="1" value="150"/><span>0</span></li>
     </ul>
 
-    <div id="observer-space">
-    </div>
+    <svg id="observer-space"></svg>
 
 		<script src='lib/jquery-1.9.1.min.js'></script>
 		<script src="js/functions.js"></script>

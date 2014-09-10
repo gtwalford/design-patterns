@@ -28,7 +28,10 @@ h1 {
 .subject-controls {
   background: #999;
   font-size: 14px;
+  left: 0;
   padding: 25px;
+  position: fixed;
+  top: 0;
   width: 300px;
   z-index: 10;
 }
@@ -45,11 +48,6 @@ h1 {
 .subject-controls span {
   margin: 0 0 0 10px;
   vertical-align: bottom;
-}
-
-.observer {
-  background: #333;
-  position: fixed;
 }
 
 
