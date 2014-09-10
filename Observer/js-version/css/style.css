@@ -17,12 +17,17 @@ h1 {
 }
 
 #observer-space {
+  cursor: pointer;
   height: 100%;
   overflow: hidden;
   position: fixed;
   top: 0;
 	width: 100%;
   z-index: 1;
+}
+
+circle {
+  cursor: no-drop;
 }
 
 .subject-controls {
