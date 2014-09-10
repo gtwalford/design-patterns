@@ -14,13 +14,13 @@ $(document).ready(function (){
   });
 
   $observerSpace.on('click', function(e){
-    //console.log(e);
-    console.log("Open space");
-    new Observer('observer'+observers.length, e.pageX, e.pageY);
-  });
-
-  $('.observer').on('click', function(e){
-    console.log(e);
+    if( e.target.tagName == 'circle' ){
+      e.target.remove();
+      subject.detachObserver( e.target.attributes.data.value );
+    }
+    else {
+      new Observer('observer'+observers.length, e.pageX, e.pageY);
+    }
   });
 
   $controls.on('mousedown, click', function(){
@@ -41,8 +41,10 @@ $(document).ready(function (){
       observers.push(observer);
     }
 
-    this.detachObserver = function (name){
-
+    this.detachObserver = function (index){
+      if (index > -1) { 
+        observers.splice(index, 1); 
+      } 
     }
 
     this.update = function (){
@@ -50,8 +52,10 @@ $(document).ready(function (){
       this.red = $('#controls--slider-red').val();
       this.green = $('#controls--slider-green').val();
       this.blue = $('#controls--slider-blue').val();
-      this.notify();
-
+      
+      if( observers.length > 0 ){
+        this.notify();
+      }
     }
 
     this.notify = function (){
@@ -59,7 +63,6 @@ $(document).ready(function (){
         observer.update();
       });
     }
-
   }
  
   /*
@@ -72,7 +75,7 @@ $(document).ready(function (){
     var blue = subject.blue;
 
     var circle = $(document.createElementNS('http://www.w3.org/2000/svg', 'circle'));
-    circle.attr('cx',x).attr('cy',y).appendTo($observerSpace);
+    circle.attr('data', observers.length).attr('cx',x).attr('cy',y).appendTo($observerSpace);
     itemStyle(size, red, green, blue );
 
     subject.registerObserver( this );
@@ -97,13 +100,8 @@ $(document).ready(function (){
    * Update Controls
    */
   function updateControls( element ){
-
     $(element).find('span').text( $(element).find('input').val() );
-
-    if( observers.length != 0 ){
-      subject.update();
-    }
-
+    subject.update();
   }
 
 });
