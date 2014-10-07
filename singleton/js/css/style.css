@@ -1,0 +1,36 @@
+/* Apply a natural box layout model to all elements: http://paulirish.com/2012/box-sizing-border-box-ftw/ */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+.chromeframe {position: absolute; top: 0;}
+
+/* Ok, this is where the fun starts.
+-------------------------------------------------------------------------------*/
+
+/* A Linux- and Windows-friendly sans-serif font stack: http://prospects.mhurrell.co.uk/post/updating-the-helvetica-font-stack */
+body {font: 13px Helmet, Freesans, sans-serif; font-weight: lighter;}
+body, select, input, textarea {color: #333;}
+a {color: #333;}
+a:hover {color: #666;}
+
+h1 {
+	font-size: 200%;
+}
+
+#svg {
+  cursor: pointer;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+	width: 100%;
+  z-index: 1;
+}
+
+
+/* Media queries!
+-------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 480px) {
+	
+		
+}
